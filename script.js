@@ -1,6 +1,7 @@
 const HTML = document.documentElement
 const CANVAS = document.getElementById("hero")
 const CONTEXT = CANVAS.getContext("2d")
+const INTRO = document.querySelector('.intro')
 
 const frameCount = 340
 
@@ -33,17 +34,44 @@ const updateImage = index =>
     CONTEXT.drawImage(img, 0, 0)
 }
 
-window.addEventListener('scroll', () =>
-{  
-    const scrollTop = HTML.scrollTop;
-    const maxScrollTop = HTML.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
+// window.addEventListener('scroll', () =>
+// {  
+//     const scrollTop = HTML.scrollTop;
+//     const maxScrollTop = HTML.scrollHeight - window.innerHeight;
+//     const scrollFraction = scrollTop / maxScrollTop;
+//     const frameIndex = Math.min(
+//         frameCount - 1,
+//         Math.ceil(scrollFraction * frameCount)
+//     )
+
+//     requestAnimationFrame(() => updateImage(frameIndex + 1))
+// })
+
+preloadImages()
+
+const controller = new ScrollMagic.Controller()
+
+const scene = new ScrollMagic.Scene({
+    duration: 1000,
+    triggerElement: INTRO,
+    triggerHook: 0
+})
+    .setPin(INTRO)
+    .addTo(controller)
+
+let scrollPosition = 0
+let accelAmount = 0.1
+let delay = 0
+
+scene.on('update', (_event) =>
+{
+    scrollPosition = _event.scrollPos / 1000
+    delay += (scrollPosition - delay) * accelAmount
+
     const frameIndex = Math.min(
         frameCount - 1,
-        Math.ceil(scrollFraction * frameCount)
+        Math.ceil(delay * frameCount)
     )
 
     requestAnimationFrame(() => updateImage(frameIndex + 1))
 })
-
-preloadImages()

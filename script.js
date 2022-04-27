@@ -33,6 +33,7 @@ const updateImage = index =>
     img.src = currentFrame(index)
     CONTEXT.drawImage(img, 0, 0)
 }
+console.log(HTML.scrollHeight, window.innerHeight)
 
 // window.addEventListener('scroll', () =>
 // {  
@@ -50,9 +51,10 @@ const updateImage = index =>
 preloadImages()
 
 const controller = new ScrollMagic.Controller()
+const duration = 3000
 
 const scene = new ScrollMagic.Scene({
-    duration: 1000,
+    duration,
     triggerElement: INTRO,
     triggerHook: 0
 })
@@ -65,12 +67,11 @@ let delay = 0
 
 scene.on('update', (_event) =>
 {
-    scrollPosition = _event.scrollPos / 1000
-    delay += (scrollPosition - delay) * accelAmount
+    scrollPosition = _event.scrollPos
 
     const frameIndex = Math.min(
         frameCount - 1,
-        Math.ceil(delay * frameCount)
+        Math.ceil((scrollPosition / (duration * 1.1)) * frameCount)
     )
 
     requestAnimationFrame(() => updateImage(frameIndex + 1))

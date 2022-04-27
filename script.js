@@ -16,7 +16,7 @@ const preloadImages = () =>
         const img = new Image()
         img.src = currentFrame(i)
     }
-};
+}
 
 const img = new Image()
 img.src = currentFrame(1);

@@ -2,9 +2,9 @@ const html = document.documentElement;
 const canvas = document.getElementById("hero");
 const context = canvas.getContext("2d");
 
-const frameCount = 148;
+const frameCount = 340;
 const currentFrame = index => (
-  `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index.toString().padStart(4, '0')}.jpg`
+  `./assets/IMG_0076${index.toString().padStart(3, '0')}.jpg`
 )
 
 const preloadImages = () => {
@@ -16,8 +16,8 @@ const preloadImages = () => {
 
 const img = new Image()
 img.src = currentFrame(1);
-canvas.width=1158;
-canvas.height=770;
+canvas.width=563;
+canvas.height=1000;
 img.onload=function(){
   context.drawImage(img, 0, 0);
 }

@@ -4,7 +4,7 @@ const CANVAS = document.getElementById("hero")
 const CONTEXT = CANVAS.getContext("2d")
 const INTRO = document.querySelector('.intro')
 const TITLE = INTRO.querySelector('.title')
-// const TEXT2 = INTRO.querySelector('.second')
+const TXT = INTRO.querySelector('.second')
 
 const frameCount = 621
 
@@ -68,13 +68,23 @@ imgScene.on('update', (_event) =>
 })
 
 // Title Animation
-const titleOffset = 1000
 const titleAnim = TweenMax.fromTo(TITLE, 1, { opacity: 1 }, { opacity: 0 })
 const titleScene = new ScrollMagic.Scene({
-    duration: duration - titleOffset,
+    duration: duration * 0.33,
     triggerElement: INTRO,
-    triggerHook: 0,
-    offset: titleOffset
+    triggerHook: 0
 })
     .setTween(titleAnim)
+    .addTo(controller)
+
+// Txt Animation
+const txtOffset = 1250
+const txtAnim = TweenMax.fromTo(TXT, 1, { opacity: 0 }, { opacity: 1 })
+const txtScene = new ScrollMagic.Scene({
+    duration: (duration * 0.66) - txtOffset,
+    triggerElement: INTRO,
+    triggerHook: 0,
+    offset: txtOffset
+})
+    .setTween(txtAnim)
     .addTo(controller)

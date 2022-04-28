@@ -41,3 +41,7 @@ h1 {
     color: #FFF;
     font-family: sans-serif;
 }
+
+.second {
+    opacity: 0;
+}

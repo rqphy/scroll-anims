@@ -3,6 +3,7 @@ const HTML = document.documentElement
 const CANVAS = document.getElementById("hero")
 const CONTEXT = CANVAS.getContext("2d")
 const INTRO = document.querySelector('.intro')
+const TEXT = INTRO.querySelector('h1')
 
 const frameCount = 340
 
@@ -38,6 +39,7 @@ const updateImage = index =>
 preloadImages()
 
 const controller = new ScrollMagic.Controller()
+// Img Animation
 const duration = 3000
 
 const imgScene = new ScrollMagic.Scene({
@@ -63,3 +65,13 @@ imgScene.on('update', (_event) =>
 
     requestAnimationFrame(() => updateImage(frameIndex + 1))
 })
+
+// Txt Animation
+const txtAnim = TweenMax.fromTo(TEXT, 3, { opacity: 1 }, { opacity: 0 })
+const txtScene = new ScrollMagic.Scene({
+    duration,
+    triggerElement: INTRO,
+    triggerHook: 0
+})
+    .setTween(txtAnim)
+    .addTo(controller);

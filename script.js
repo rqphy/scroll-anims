@@ -68,7 +68,22 @@ imgScene.on('update', (_event) =>
 })
 
 // Title Animation
-const titleAnim = TweenMax.fromTo(TITLE, 1, { opacity: 1 }, { opacity: 0 })
+const titleAnim = TweenMax.fromTo(
+    TITLE,
+    1,
+    {
+        css:{
+            opacity: '1',
+            transform: 'translate3d(-50%, -50%, 0) scale(1)'
+        }
+    },
+    {
+        css:{
+            opacity: '0',
+            transform: 'translate3d(-50%, -50%, 0) scale(1.2)'
+        }
+    }
+)
 const titleScene = new ScrollMagic.Scene({
     duration: duration * 0.33,
     triggerElement: INTRO,
@@ -79,7 +94,22 @@ const titleScene = new ScrollMagic.Scene({
 
 // Txt Animation
 const txtOffset = 1250
-const txtAnim = TweenMax.fromTo(TXT, 1, { opacity: 0 }, { opacity: 1 })
+const txtAnim = TweenMax.fromTo(
+    TXT,
+    1,
+    {
+        css:{
+            opacity: '0',
+            transform: 'translate3d(-50%, -50%, 0) scale(1)'
+        }
+    },
+    {
+        css:{
+            opacity: '1',
+            transform: 'translate3d(-50%, -50%, 0) scale(1.6)'
+        }
+    }
+)
 const txtScene = new ScrollMagic.Scene({
     duration: (duration * 0.66) - txtOffset,
     triggerElement: INTRO,

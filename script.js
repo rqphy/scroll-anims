@@ -1,4 +1,6 @@
 // inspi https://codepen.io/j-v-w/pen/ZEbGzyv?editors=0110
+// Check scroll-out js
+// and https://codepen.io/jacob_124/pen/dyydWbB?editors=1010
 const HTML = document.documentElement
 const CANVAS = document.getElementById("hero")
 const CONTEXT = CANVAS.getContext("2d")

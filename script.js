@@ -5,11 +5,11 @@ const CONTEXT = CANVAS.getContext("2d")
 const INTRO = document.querySelector('.intro')
 const TEXT = INTRO.querySelector('h1')
 
-const frameCount = 340
+const frameCount = 622
 
 const currentFrame = index =>
 (
-    `./assets/IMG_0076${index.toString().padStart(3, '0')}.jpg`
+    `./assets/pexels${index.toString().padStart(3, '0')}.jpg`
 )
 
 const preloadImages = () =>
@@ -23,8 +23,8 @@ const preloadImages = () =>
 
 const img = new Image()
 img.src = currentFrame(1);
-CANVAS.width=563;
-CANVAS.height=1000;
+CANVAS.width=1422;
+CANVAS.height=800;
 img.onload=function()
 {
     CONTEXT.drawImage(img, 0, 0)

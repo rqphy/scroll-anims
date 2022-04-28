@@ -82,7 +82,7 @@ const titleAnim = TweenMax.fromTo(
     {
         css:{
             opacity: '0',
-            transform: 'translate3d(-50%, -50%, 0) scale(1.2)'
+            transform: 'translate3d(-50%, -50%, 0) scale(2)'
         }
     }
 )
@@ -108,7 +108,7 @@ const txtAnim = TweenMax.fromTo(
     {
         css:{
             opacity: '1',
-            transform: 'translate3d(-50%, -50%, 0) scale(1.6)'
+            transform: 'translate3d(-50%, -50%, 0) scale(2)'
         }
     }
 )

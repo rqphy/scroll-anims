@@ -150,6 +150,23 @@ const txtAnim = TweenMax.fromTo(
         }
     }
 )
+const txtOffAnim = TweenMax.fromTo(
+    TXT,
+    1,
+    {
+        css:{
+            opacity: '1',
+            transform: 'translate3d(-50%, -50%, 0) scale(2)'
+
+        }
+    },
+    {
+        css:{
+            opacity: '0',
+            transform: 'translate3d(-50%, -50%, 0) scale(1)'
+        }
+    }
+)
 const txtScene = new ScrollMagic.Scene({
     duration: (duration * 0.66) - txtOffset,
     triggerElement: INTRO,
@@ -182,4 +199,13 @@ const sectionScene = new ScrollMagic.Scene({
     offset: duration - sectionEndDuration
 })
     .setTween(sectionEnd)
+    .addTo(controller)
+
+const txtOutScene = new ScrollMagic.Scene({
+    duration: sectionEndDuration,
+    triggerElement: INTRO,
+    triggerHook: 0,
+    offset: duration - sectionEndDuration
+})
+    .setTween(txtOffAnim)
     .addTo(controller)

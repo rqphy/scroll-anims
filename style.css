@@ -15,7 +15,7 @@ body {
     background: #000;
 }
 
-.intro {
+.intro, .two {
     position: relative;
     height: 100vh;
     width: 100%;
@@ -31,7 +31,7 @@ canvas {
 }
 
 .two {
-    height: 200vh;
+    background: tomato;
 }
 
 h1 {

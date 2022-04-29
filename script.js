@@ -26,17 +26,34 @@ const preloadImages = () =>
 
 const img = new Image()
 img.src = currentFrame(1);
-CANVAS.width=1422;
-CANVAS.height=800;
+const imgSize = {}
+imgSize.width = 1422
+imgSize.height = 800
+CONTEXT.canvas.width = CANVAS.offsetWidth
+CONTEXT.canvas.height = CANVAS.offsetHeight
+
+console.log(CANVAS.offsetWidth, CANVAS.offsetHeight)
 img.onload=function()
 {
-    CONTEXT.drawImage(img, 0, 0)
+    CONTEXT.drawImage(
+        img,
+        CANVAS.offsetWidth / 2 - imgSize.width / 2,
+        CANVAS.offsetHeight / 2 - imgSize.height / 2,
+        imgSize.width,
+        imgSize.height
+    )
 }
 
 const updateImage = index =>
 {
     img.src = currentFrame(index)
-    CONTEXT.drawImage(img, 0, 0)
+    CONTEXT.drawImage(
+        img,
+        CANVAS.offsetWidth / 2 - imgSize.width / 2,
+        CANVAS.offsetHeight / 2 - imgSize.height / 2,
+        imgSize.width,
+        imgSize.height
+    )
 }
 
 preloadImages()

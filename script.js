@@ -158,3 +158,28 @@ const txtScene = new ScrollMagic.Scene({
 })
     .setTween(txtAnim)
     .addTo(controller)
+
+// Section End
+const sectionEndDuration = 400
+const sectionEnd = TweenMax.fromTo(
+    INTRO,
+    1,
+    {
+        css:{
+            transform: 'scale(1)'
+        }
+    },
+    {
+        css:{
+            transform: 'scale(0.6)'
+        }
+    }
+)
+const sectionScene = new ScrollMagic.Scene({
+    duration: sectionEndDuration,
+    triggerElement: INTRO,
+    triggerHook: 0,
+    offset: duration - sectionEndDuration
+})
+    .setTween(sectionEnd)
+    .addTo(controller)

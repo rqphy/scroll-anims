@@ -9,10 +9,12 @@ const TITLE = INTRO.querySelector('.title')
 const TXT = INTRO.querySelector('.second')
 
 const frameCount = 621
+// const frameCount = 1
 
 const currentFrame = index =>
 (
-    `./assets/pexels${index.toString().padStart(3, '0')}.jpg`
+    // `./assets/test/pexels${index.toString().padStart(3, '0')}.jpg`
+    `./assets/fireball/pexels${index.toString().padStart(3, '0')}.jpg`
 )
 
 const preloadImages = () =>
@@ -24,13 +26,41 @@ const preloadImages = () =>
     }
 }
 
+const wSize = {}
+const updateWindowSize = () =>
+{
+    wSize.width = window.innerWidth
+    wSize.height = window.innerHeight
+}
+
+preloadImages()
+updateWindowSize()
+
+const setImgSize = (defaultWidth, defaultHeight) =>
+{
+    const finalSize = {}
+
+    if(wSize.width / wSize.height > defaultWidth / defaultHeight)
+    {
+        finalSize.width = wSize.width
+        finalSize.height = (wSize.width * defaultHeight) / defaultWidth
+    }
+    else if(wSize.width / wSize.height < defaultWidth / defaultHeight)
+    {
+        finalSize.width = (wSize.height * defaultWidth) / defaultHeight
+        finalSize.height = wSize.height
+    }
+    return finalSize
+}
+
 const img = new Image()
 img.src = currentFrame(1);
-const imgSize = {}
-imgSize.width = 1422
-imgSize.height = 800
+// const imgSize = setImgSize(3648, 5472)
+const imgSize = setImgSize(1422, 800)
 CONTEXT.canvas.width = CANVAS.offsetWidth
 CONTEXT.canvas.height = CANVAS.offsetHeight
+
+
 
 img.onload=function()
 {
@@ -48,7 +78,6 @@ const updateImage = index =>
     img.src = currentFrame(index)
 }
 
-preloadImages()
 
 const controller = new ScrollMagic.Controller()
 // Img Animation

@@ -1,3 +1,10 @@
+/**
+ * TODO
+ * patch padding top problem
+ * create class
+ * add previous duration variable
+ */
+
 const CANVAS2 = document.getElementById("next")
 const CONTEXT2 = CANVAS2.getContext("2d")
 const SECTION2 = document.querySelector('.next')

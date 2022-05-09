@@ -73,7 +73,7 @@ img.onload=function()
     )
 }
 
-const updateImage = index =>
+const updateImage = (img, index) =>
 {
     img.src = currentFrame(index)
 }
@@ -92,8 +92,6 @@ const imgScene = new ScrollMagic.Scene({
     .addTo(controller)
 
 let scrollPosition = 0
-let accelAmount = 0.1
-let delay = 0
 
 imgScene.on('update', (_event) =>
 {
@@ -104,7 +102,7 @@ imgScene.on('update', (_event) =>
         Math.ceil((scrollPosition / (duration * 1.1)) * frameCount)
     )
 
-    requestAnimationFrame(() => updateImage(frameIndex + 1))
+    requestAnimationFrame(() => updateImage(img, frameIndex + 1))
 })
 
 // Title Animation

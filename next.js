@@ -37,17 +37,3 @@ const imgScene2 = new ScrollMagic.Scene({
 })
     .setPin(SECTION2)
     .addTo(controller)
-
-
-imgScene2.on('update', (_event) =>
-{
-    scrollPosition = _event.scrollPos - duration
-
-    if(scrollPosition < 0) return
-    const frameIndex = Math.min(
-        frameCount2 - 1,
-        Math.ceil((scrollPosition / (duration2 * 1.1)) * frameCount2)
-    )
-
-    requestAnimationFrame(() => updateImage(img2, frameIndex + 1))
-})

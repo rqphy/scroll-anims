@@ -8,21 +8,23 @@ const INTRO = document.querySelector('.intro')
 const TITLE = INTRO.querySelector('.title')
 const TXT = INTRO.querySelector('.second')
 
-const frameCount = 621
 // const frameCount = 1
+// const frameCount = 621
+const frameCount = 598
 
-const currentFrame = index =>
-(
+const currentFrame = (index, video = 'fireball') =>
+{
+    if (video == 'intro') return`./assets/intro/intro_0001${index.toString().padStart(3, '0')}.jpg`
+    return `./assets/fireball/pexels${index.toString().padStart(3, '0')}.jpg`
     // `./assets/test/pexels${index.toString().padStart(3, '0')}.jpg`
-    `./assets/fireball/pexels${index.toString().padStart(3, '0')}.jpg`
-)
+}
 
 const preloadImages = () =>
 {
     for (let i = 1; i < frameCount; i++)
     {
         const img = new Image()
-        img.src = currentFrame(i)
+        img.src = currentFrame(i, 'intro')
     }
 }
 
@@ -54,7 +56,7 @@ const setImgSize = (defaultWidth, defaultHeight) =>
 }
 
 const img = new Image()
-img.src = currentFrame(1);
+img.src = currentFrame(1, 'intro');
 // const imgSize = setImgSize(3648, 5472)
 const imgSize = setImgSize(1422, 800)
 CONTEXT.canvas.width = CANVAS.offsetWidth
@@ -73,9 +75,9 @@ img.onload=function()
     )
 }
 
-const updateImage = (img, index) =>
+const updateImage = (img, index, video) =>
 {
-    img.src = currentFrame(index)
+    img.src = currentFrame(index, video)
 }
 
 
@@ -97,12 +99,27 @@ imgScene.on('update', (_event) =>
 {
     scrollPosition = _event.scrollPos
 
-    const frameIndex = Math.min(
-        frameCount - 1,
-        Math.ceil((scrollPosition / (duration * 1.1)) * frameCount)
-    )
-
-    requestAnimationFrame(() => updateImage(img, frameIndex + 1))
+    if(scrollPosition <= duration)
+    {
+        console.log(1)
+    
+        const frameIndex = Math.min(
+            frameCount - 1,
+            Math.ceil((scrollPosition / (duration * 1.1)) * frameCount)
+        )
+    
+        requestAnimationFrame(() => updateImage(img, frameIndex + 1, 'intro'))
+    }
+    else if(scrollPosition < duration2 + duration)
+    {
+        console.log(2)
+        const frameIndex = Math.min(
+            frameCount2 - 1,
+            Math.ceil(((scrollPosition - duration) / (duration2 * 1.1)) * frameCount2)
+        )
+    
+        requestAnimationFrame(() => updateImage(img2, frameIndex + 1))
+    }
 })
 
 // Title Animation
